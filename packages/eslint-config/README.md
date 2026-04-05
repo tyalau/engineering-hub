@@ -1,3 +1,3 @@
-# `@turbo/eslint-config`
+# `@tyalau/eslint-config`
 
 Collection of internal eslint configurations.
