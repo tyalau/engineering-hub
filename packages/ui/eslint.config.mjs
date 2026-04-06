@@ -1,4 +1,7 @@
-import { config } from "@tyalau/eslint-config/react-internal";
+import { defineConfig } from "eslint/config";
+import reactConfig from "@tyalau/eslint-config/react";
 
-/** @type {import("eslint").Linter.Config} */
-export default config;
+
+export default defineConfig([
+	...reactConfig,
+]);
