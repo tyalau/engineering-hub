@@ -1,6 +1,6 @@
-import { globalIgnores, defineConfig } from "eslint/config";
 import nextVitals from 'eslint-config-next/core-web-vitals'
-import baseConfig from "./base.js";
+import { globalIgnores, defineConfig } from 'eslint/config'
+import baseConfig from './base.js'
 
 export default defineConfig([
   ...nextVitals,
@@ -29,4 +29,4 @@ export default defineConfig([
     'build/**',
     'next-env.d.ts',
   ]),
-]);
+])

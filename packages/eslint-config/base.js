@@ -1,15 +1,15 @@
-import globals from "globals";
-import js from "@eslint/js";
-import turboPlugin from "eslint-plugin-turbo";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js'
+import turboPlugin from 'eslint-plugin-turbo'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: globals.es2021,
     },
     plugins: {
@@ -18,7 +18,7 @@ export default [
     rules: {
       'array-callback-return': 'error',
       'dot-notation': 'error',
-      "eqeqeq": ['error', 'always'],
+      eqeqeq: ['error', 'always'],
       'func-style': ['error', 'expression'],
       'no-console': [
         'warn',
@@ -38,7 +38,7 @@ export default [
       'no-negated-condition': 'error',
       'no-param-reassign': 'error',
       'no-return-assign': 'error',
-      "no-self-compare": "error",
+      'no-self-compare': 'error',
       'no-template-curly-in-string': 'error',
       'no-undef': 0,
       'no-undef-init': 'error',
@@ -56,18 +56,18 @@ export default [
       'prefer-rest-params': 'error',
       'prefer-spread': 'error',
       'prefer-template': 'error',
-      "turbo/no-undeclared-env-vars": "error",
+      'turbo/no-undeclared-env-vars': 'error',
 
       // @typescript-eslint
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        { 
-          prefer: 'type-imports', 
+        {
+          prefer: 'type-imports',
           fixStyle: 'inline-type-imports',
-          disallowTypeAnnotations: true 
-        }
+          disallowTypeAnnotations: true,
+        },
       ],
-      "@typescript-eslint/no-import-type-side-effects": "error"
+      '@typescript-eslint/no-import-type-side-effects': 'error',
     },
   },
-];
+]

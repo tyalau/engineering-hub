@@ -1,8 +1,8 @@
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginReactRefresh from "eslint-plugin-react-refresh";
-import globals from "globals";
-import baseConfig from "./base.js";
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import pluginReactRefresh from 'eslint-plugin-react-refresh'
+import globals from 'globals'
+import baseConfig from './base.js'
 
 export default [
   ...baseConfig,
@@ -22,7 +22,7 @@ export default [
       'react-hooks': pluginReactHooks,
       'react-refresh': pluginReactRefresh,
     },
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: 'detect' } },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
 
@@ -41,4 +41,4 @@ export default [
       'react-hooks/exhaustive-deps': 0,
     },
   },
-];
+]
