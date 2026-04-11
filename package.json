@@ -1,5 +1,5 @@
 {
-  "name": "hub",
+  "name": "engineering-hub",
   "private": true,
   "scripts": {
     "build": "turbo run build",
