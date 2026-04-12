@@ -1,15 +1,16 @@
 {
-  "name": "hub",
+  "name": "engineering-hub",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,mjs,ts,tsx,css,scss,md,json}\"",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "prettier": "^3.7.4",
+    "@tyalau/prettier-config": "workspace:*",
+    "prettier": "^3.8.2",
     "turbo": "^2.9.3",
     "typescript": "5.9.2"
   },
