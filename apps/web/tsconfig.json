@@ -1,5 +1,5 @@
 {
-  "extends": "@tyalau/typescript-config/nextjs.json",
+  "extends": "@tyalau/typescript-config/nextjs",
   "compilerOptions": {
     "plugins": [
       {
