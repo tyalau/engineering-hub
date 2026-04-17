@@ -19,5 +19,6 @@ The central source of truth for code quality standards across the `engineering-h
 Ensure the peer dependencies are installed in your project:
 
 ```bash
-pnpm add -D eslint typescript @tyalau/eslint-config
+pnpm add -D eslint typescript
+pnpm add -D @tyalau/eslint-config --workspace
 ```
