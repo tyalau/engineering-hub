@@ -137,7 +137,11 @@ importers:
         specifier: ^3.8.2
         version: 3.8.2
 
-  packages/typescript-config: {}
+  packages/typescript-config:
+    devDependencies:
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
 
   packages/ui:
     dependencies:
