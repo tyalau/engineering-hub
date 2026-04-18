@@ -84,4 +84,5 @@ To run type-checking across the entire monorepo, execute the following from the 
 pnpm check-types
 ```
 
-> [!NOTE] This leverages `turbo` to run `tsc --noEmit` in parallel across all packages, using the cached results where possible.
+> [!NOTE]
+> This leverages `turbo` to run `tsc --noEmit` in parallel across all packages, using the cached results where possible.
