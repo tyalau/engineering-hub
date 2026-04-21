@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@tyalau/commitlint-config':
+        specifier: workspace:*
+        version: link:packages/commitlint-config
       '@tyalau/prettier-config':
         specifier: workspace:*
         version: link:packages/prettier-config
