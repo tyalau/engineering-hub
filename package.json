@@ -1,6 +1,7 @@
 {
   "name": "engineering-hub",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -10,6 +11,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
     "@tyalau/commitlint-config": "workspace:*",
     "@tyalau/prettier-config": "workspace:*",
     "husky": "^9.1.7",
