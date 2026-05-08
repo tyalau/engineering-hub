@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+
+env:
+  HUSKY: 0
+
+jobs:
+  integration:
+    name: Integration
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # Set up pnpm
+      - name: Setup Node.js and pnpm
+        uses: pnpm/action-setup@v5
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      # Run lint
+      - name: Run linter
+        run: pnpm turbo run lint
+
+      # Run type check
+      - name: Run check types
+        run: pnpm turbo run check-types
+
+      # Run build
+      - name: Run build
+        run: pnpm turbo run build
