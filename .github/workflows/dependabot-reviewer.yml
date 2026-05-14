@@ -1,0 +1,25 @@
+name: Dependabot Auto Review Request
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  assign-reviewer:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    # Only run if Dependabot opened the PR
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Request Reviewer from Variable
+        run: |
+            if [ -z "$REVIEWERS" ]; then
+              echo "No reviewers defined in PR_REVIEWERS variable. Skipping."
+              exit 0
+            fi
+            gh pr edit "$PR_URL" --add-reviewer "$REVIEWERS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REVIEWERS: ${{ vars.PR_REVIEWERS }}
