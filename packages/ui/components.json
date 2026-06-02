@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "radix-nova",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@tyalau/ui",
+    "ui": "@tyalau/ui",
+    "utils": "@tyalau/ui/lib/utils"
+  },
+  "iconLibrary": "lucide"
+}

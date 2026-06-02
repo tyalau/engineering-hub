@@ -5,9 +5,9 @@
     "jsx": "react-jsx",
     "lib": ["esnext", "dom", "dom.iterable"],
     "noEmit": false,
-    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": false,
+    "emitDeclarationOnly": false,
     "declaration": true,
-    "declarationMap": true,
-    "outDir": "./dist"
+    "declarationMap": true
   }
 }
