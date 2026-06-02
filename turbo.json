@@ -9,8 +9,20 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
-    "check-types": {},
+    "check-types": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
     "dev": {
+      "with": ["dev:styles", "dev:components"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:components": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:styles": {
       "cache": false,
       "persistent": true
     }
