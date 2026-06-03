@@ -204,4 +204,8 @@
     letter-spacing: 0;
     font-weight: 500;
   }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
