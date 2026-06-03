@@ -32,6 +32,7 @@ export default function Home() {
           priority
         />
         <ol>
+          <li>This is dark mode.</li>
           <li>
             Get started by editing <code>apps/web/app/page.tsx</code>
           </li>
