@@ -30,6 +30,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^10.4.2",
     "@storybook/react-vite": "^10.4.2",
     "@tailwindcss/vite": "^4.3.0",
     "@tyalau/eslint-config": "workspace:*",
