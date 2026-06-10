@@ -27,7 +27,11 @@
     "build:styles": "tailwindcss -i ./src/styles.css -o dist/styles.css --minify",
     "build": "pnpm clean && pnpm build:components && pnpm build:styles",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest --run",
+    "test:storybook": "vitest --run --project=storybook",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.4.2",
