@@ -33,6 +33,7 @@
     "@storybook/addon-docs": "^10.4.2",
     "@storybook/addon-mcp": "^0.6.0",
     "@storybook/addon-themes": "^10.4.2",
+    "@storybook/addon-vitest": "^10.4.2",
     "@storybook/react-vite": "^10.4.2",
     "@tailwindcss/vite": "^4.3.0",
     "@tyalau/eslint-config": "workspace:*",
@@ -40,11 +41,16 @@
     "@types/node": "^24.1.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.3",
+    "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/ui": "^4.1.8",
     "eslint": "^9.39.1",
     "eslint-plugin-storybook": "^10.4.2",
+    "playwright": "^1.60.0",
     "storybook": "^10.4.2",
     "typescript": "5.9.2",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.0",
