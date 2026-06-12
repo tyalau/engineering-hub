@@ -8,6 +8,10 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "test": {
+      "env": ["PLAYWRIGHT_BROWSERS_PATH"],
+      "dependsOn": ["^build"]
+    },
     "lint": {},
     "check-types": {
       "dependsOn": ["^build"],

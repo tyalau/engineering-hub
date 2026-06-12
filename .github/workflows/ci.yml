@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - '**'
 
@@ -15,6 +16,10 @@ jobs:
   integration:
     name: Integration
     runs-on: ubuntu-latest
+    container:
+      # Make sure to grab the latest version of the Playwright image
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.60.0-noble
     permissions:
       contents: read
 
@@ -49,3 +54,9 @@ jobs:
       # Run build
       - name: Run build
         run: pnpm turbo run build
+
+      # Run tests
+      - name: Run tests
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+        run: pnpm turbo run test
