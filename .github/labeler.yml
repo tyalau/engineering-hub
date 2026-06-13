@@ -41,3 +41,9 @@ dependencies:
 
 "type:refactor":
   - head-branch: '^refactor/'
+
+"type:dx":
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'CLAUDE.md'
+      - '.storybook/**'
