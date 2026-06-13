@@ -4,6 +4,9 @@ import storybook from 'eslint-plugin-storybook'
 import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
+  {
+    ignores: ['dist/'],
+  },
   ...reactConfig,
   {
     files: ['src/components/**/*.{ts,tsx}'],
