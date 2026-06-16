@@ -60,6 +60,7 @@ Never hallucinate component properties! Before using ANY property on a component
 
 - No need to import React (React 17+ JSX transform)
 - Use `type` instead of `interface` when defining component props
+- Use `React.ComponentProps<'div'>` (not `React.HTMLAttributes<HTMLDivElement>`) for component prop types — covers `ref` natively on React 19
 
 ### @tyalau/ui Component Props
 
