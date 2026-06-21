@@ -186,6 +186,14 @@
   pre {
     font-family: var(--font-mono-data);
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0.25em;
+  }
   h1 {
     font-family: var(--font-heading-data);
     font-size: 2.25rem;
@@ -227,6 +235,40 @@
     line-height: 1.5;
     letter-spacing: 0;
     font-weight: 500;
+  }
+  p {
+    margin-bottom: 0.75rem;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  strong {
+    font-weight: 600;
+  }
+  small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  ul,
+  ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0;
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  li {
+    margin-bottom: 0.25rem;
+  }
+  li:last-child {
+    margin-bottom: 0;
   }
   button:not(:disabled),
   [role='button']:not(:disabled) {

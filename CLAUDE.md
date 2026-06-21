@@ -144,6 +144,10 @@ export { Button } from './Button'
 export type { ButtonProps } from './Button'
 ```
 
+## Styling Decisions
+
+When making styling decisions (spacing, font weight, color defaults), reference what popular component libraries do (Bootstrap, MUI, Chakra UI, Tailwind prose) before recommending a value.
+
 ## Code Quality Standards
 
 - Follow the ESLint config (`@tyalau/eslint-config`) for your project type (base, react, or next)
