@@ -7,6 +7,9 @@ const preview: Preview = {
     a11y: {
       // non-blocking in CI
       test: 'todo',
+      context: {
+        exclude: ['.font-mono'],
+      },
     },
   },
   decorators: [

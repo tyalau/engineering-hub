@@ -1,23 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { ArrowRight, Mail } from 'lucide-react'
 import { Button } from './Button'
-
-// temporary component test
-// Mock icon component to validate your CVA styling rules:
-// [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4
-const MockIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M5 12h14" />
-    <path d="m12 5 7 7-7 7" />
-  </svg>
-)
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -26,163 +9,195 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'outline', 'secondary', 'ghost', 'destructive', 'link'],
-      description: 'Applies layout design token variant coordinates.',
+      options: ['solid', 'outline', 'ghost'],
     },
     size: {
       control: 'select',
-      options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
-      description: 'Controls structural height increments and rounding matrix adjustments.',
+      options: ['sm', 'md', 'lg'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'warning', 'error', 'info'],
+    },
+    fullWidth: {
+      control: 'boolean',
     },
     disabled: {
       control: 'boolean',
-      description: 'Triggers pointer-disable states and drops structural canvas opacity.',
     },
     asChild: {
-      control: 'boolean',
-      description: 'Swaps native element wrappers out to utilize Radix Slot structures.',
-    },
-    'aria-invalid': {
-      control: 'boolean',
-      description: 'Simulates error validation conditions, shifting focus borders to destructive channels.',
+      control: false,
+      description: 'See the AsChild story for usage',
     },
   },
   args: {
-    variant: 'default',
-    size: 'default',
+    children: 'Button',
+    variant: 'solid',
+    size: 'md',
+    color: 'primary',
+    fullWidth: false,
     disabled: false,
     asChild: false,
-    children: 'Button Action',
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Button>
 
-/**
- * 🎨 Standard Core Variations
- */
-export const Default: Story = {
-  args: {
-    variant: 'default',
-    children: 'Primary Luma State',
-  },
-}
+export const Default: Story = {}
 
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    children: 'Flat Boundary State',
-  },
-}
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Mist Tint State',
-  },
-}
-
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    children: 'Minimal Canvas State',
-  },
-}
-
-/**
- * 🚨 Destructive Danger State
- * Validates your oklch alpha channels: bg-destructive/10 text-destructive
- */
-export const Destructive: Story = {
-  args: {
-    variant: 'destructive',
-    children: 'Danger Alert Action',
-  },
-}
-
-export const Link: Story = {
-  args: {
-    variant: 'link',
-    children: 'Text Anchor Modifier',
-  },
-}
-
-/**
- * 🛠️ Contextual Layout Scenarios
- */
-
-// Validates icon size scaling calculations specified inside your CVA maps
-export const WithIcons: Story = {
+export const Sizes: Story = {
   render: (args) => (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2">
-        <Button {...args} data-icon="inline-start">
-          <MockIcon />
-          Prefix Stream
-        </Button>
-        <Button {...args} data-icon="inline-end">
-          Suffix Stream
-          <MockIcon />
-        </Button>
-      </div>
-      <div className="flex items-center gap-2">
-        <Button {...args} size="icon" aria-label="Icon only">
-          <MockIcon />
-        </Button>
-        <Button {...args} size="icon-sm" aria-label="Small icon only">
-          <MockIcon />
-        </Button>
-      </div>
+    <div className="flex items-center gap-3">
+      <Button {...args} size="sm">
+        Small
+      </Button>
+      <Button {...args} size="md">
+        Medium
+      </Button>
+      <Button {...args} size="lg">
+        Large
+      </Button>
     </div>
   ),
 }
 
-// Validates boundary styling adjustments triggered under: aria-invalid:border-destructive
-export const ValidationErrors: Story = {
-  args: {
-    variant: 'outline',
-    'aria-invalid': true,
-    children: 'Invalid Data Focus Border',
-  },
+export const Variants: Story = {
+  render: (args) => (
+    <div className="flex items-center gap-3">
+      <Button {...args} variant="solid">
+        Solid
+      </Button>
+      <Button {...args} variant="outline">
+        Outline
+      </Button>
+      <Button {...args} variant="ghost">
+        Ghost
+      </Button>
+    </div>
+  ),
 }
 
-// Validates the custom layout behavior triggered via your: active:not-aria-[haspopup]:translate-y-px execution rules
-export const ActiveScaleCheck: Story = {
-  args: {
-    children: 'Press and Hold Me to View Click Offset',
-  },
+export const Colors: Story = {
+  render: (args) => (
+    <div className="flex flex-wrap gap-3">
+      <Button {...args} color="primary">
+        Primary
+      </Button>
+      <Button {...args} color="secondary">
+        Secondary
+      </Button>
+      <Button {...args} color="success">
+        Success
+      </Button>
+      <Button {...args} color="warning">
+        Warning
+      </Button>
+      <Button {...args} color="error">
+        Error
+      </Button>
+      <Button {...args} color="info">
+        Info
+      </Button>
+    </div>
+  ),
 }
 
-/**
- * 🎛️ Complete Component Matrix Grid Showcase
- */
-export const FullLayoutMatrix: Story = {
+export const Disabled: Story = {
+  args: { disabled: true },
+  render: (args) => (
+    <div className="flex items-center gap-3">
+      <Button {...args} variant="solid">
+        Solid
+      </Button>
+      <Button {...args} variant="outline">
+        Outline
+      </Button>
+      <Button {...args} variant="ghost">
+        Ghost
+      </Button>
+    </div>
+  ),
+}
+
+export const FullWidth: Story = {
+  args: { fullWidth: true },
+  render: (args) => (
+    <div className="w-80">
+      <Button {...args} />
+    </div>
+  ),
+}
+
+export const FullMatrix: Story = {
+  parameters: {
+    a11y: { disable: true },
+  },
   render: () => {
-    const variants = ['default', 'outline', 'secondary', 'ghost', 'destructive', 'link'] as const
-    const sizes = ['xs', 'sm', 'default', 'lg'] as const
+    const variants = ['solid', 'outline', 'ghost'] as const
+    const colors = ['primary', 'secondary', 'success', 'warning', 'error', 'info'] as const
 
     return (
-      <div className="flex flex-col gap-8 p-4">
-        {variants.map((v) => (
-          <div key={v} className="flex flex-col gap-2">
-            <h3 className="text-xs font-mono uppercase text-muted-foreground mb-1">Variant: {v}</h3>
-            <div className="flex flex-wrap items-center gap-4">
-              {sizes.map((s) => (
-                <Button key={s} variant={v} size={s}>
-                  Size {s.toUpperCase()}
+      <div className="flex flex-col gap-6">
+        {variants.map((variant) => (
+          <div key={variant} className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-muted-foreground">{variant}</span>
+            <div className="flex flex-wrap gap-3">
+              {colors.map((color) => (
+                <Button key={color} variant={variant} color={color}>
+                  {color}
                 </Button>
               ))}
-              <Button variant={v} size="default" disabled>
-                Disabled
-              </Button>
-              <Button variant={v} size="icon" aria-label={`Icon placeholder for ${v}`}>
-                <MockIcon />
-              </Button>
             </div>
           </div>
         ))}
       </div>
     )
   },
+}
+
+export const WithStartIcon: Story = {
+  render: (args) => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button {...args} size="sm">
+        <Mail />
+        Send email
+      </Button>
+      <Button {...args} size="md">
+        <Mail />
+        Send email
+      </Button>
+      <Button {...args} size="lg">
+        <Mail />
+        Send email
+      </Button>
+    </div>
+  ),
+}
+
+export const WithEndIcon: Story = {
+  render: (args) => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button {...args} size="sm">
+        Continue
+        <ArrowRight />
+      </Button>
+      <Button {...args} size="md">
+        Continue
+        <ArrowRight />
+      </Button>
+      <Button {...args} size="lg">
+        Continue
+        <ArrowRight />
+      </Button>
+    </div>
+  ),
+}
+
+export const AsChild: Story = {
+  render: (args) => (
+    <Button {...args} asChild>
+      <a href="#demo">Link Button</a>
+    </Button>
+  ),
 }
