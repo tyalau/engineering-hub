@@ -16,7 +16,7 @@ export const Link = ({ className, color, underline, asChild = false, isExternal 
   const content = showIcon ? (
     <>
       {children}
-      <ExternalLink className="size-4 shrink-0" aria-hidden />
+      <ExternalLink className="size-[1em] shrink-0" aria-hidden />
     </>
   ) : (
     children
