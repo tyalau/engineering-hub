@@ -14,11 +14,11 @@ jobs:
     steps:
       - name: Request Reviewer from Variable
         run: |
-            if [ -z "$REVIEWERS" ]; then
-              echo "No reviewers defined in PR_REVIEWERS variable. Skipping."
-              exit 0
-            fi
-            gh pr edit "$PR_URL" --add-reviewer "$REVIEWERS"
+          if [ -z "$REVIEWERS" ]; then
+            echo "No reviewers defined in PR_REVIEWERS variable. Skipping."
+            exit 0
+          fi
+          gh pr edit "$PR_URL" --add-reviewer "$REVIEWERS"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
