@@ -101,6 +101,7 @@ export const ReadOnly: Story = {
 }
 
 export const Horizontal: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Email" direction="horizontal" className="**:data-[slot=label]:w-28">
@@ -129,6 +130,7 @@ export const Horizontal: Story = {
 }
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Small" size="sm">

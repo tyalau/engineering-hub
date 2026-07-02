@@ -4,6 +4,7 @@ const meta: Meta = {
   title: 'Foundation/Typography',
   tags: ['autodocs'],
   parameters: {
+    controls: { disable: true },
     docs: {
       description: {
         component:

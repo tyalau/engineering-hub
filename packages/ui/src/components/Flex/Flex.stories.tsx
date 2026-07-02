@@ -121,6 +121,7 @@ export const Inline: Story = {
 }
 
 export const GapScale: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const gaps = ['xs', 'sm', 'md', 'lg', 'xl'] as const
     return (

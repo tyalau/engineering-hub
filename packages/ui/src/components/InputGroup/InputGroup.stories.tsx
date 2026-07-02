@@ -50,6 +50,7 @@ export const BothIcons: Story = {
 }
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       <InputGroup size="sm" start={<Search className="size-4 pointer-events-none" />}>
@@ -66,7 +67,7 @@ export const Sizes: Story = {
 }
 
 export const CopyToClipboard: Story = {
-  argTypes: { size: { control: false } },
+  parameters: { controls: { disable: true } },
   render: () => {
     const value = 'sk-prod-abc123xyz456'
     const [copied, setCopied] = useState(false)
@@ -108,7 +109,7 @@ export const TextAdornment: Story = {
 }
 
 export const PasswordToggle: Story = {
-  argTypes: { size: { control: false } },
+  parameters: { controls: { disable: true } },
   render: () => {
     const [visible, setVisible] = useState(false)
     const Icon = visible ? EyeOff : Eye
