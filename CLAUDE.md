@@ -70,7 +70,11 @@ Define component props using these predefined values:
 
 - `primary` | `secondary` | `warning` | `error` | `success` | `info`
 
-**Size / Gap**:
+**Size** (for components — default: `md`):
+
+- `sm` | `md` | `lg`
+
+**Gap** (for Flex spacing):
 
 - `xs` | `sm` | `md` | `lg` | `xl`
 

@@ -124,6 +124,7 @@ export const Disabled: Story = {
 export const FullMatrix: Story = {
   parameters: {
     a11y: { disable: true },
+    controls: { disable: true },
   },
   render: () => {
     const variants = ['solid', 'outline', 'ghost'] as const

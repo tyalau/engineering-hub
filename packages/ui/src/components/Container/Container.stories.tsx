@@ -32,6 +32,7 @@ export const Default: Story = {
 }
 
 export const SizeScale: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const sizes = ['sm', 'md', 'lg', 'xl', 'full'] as const
     return (

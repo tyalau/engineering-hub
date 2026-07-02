@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
+import type { Gap } from '../../shared/types'
 
 export const flexVariants = cva('flex', {
   variants: {
@@ -32,7 +33,7 @@ export const flexVariants = cva('flex', {
       md: 'gap-4',
       lg: 'gap-6',
       xl: 'gap-8',
-    },
+    } satisfies Record<Gap, string>,
     wrap: {
       wrap: 'flex-wrap',
       nowrap: 'flex-nowrap',
