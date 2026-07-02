@@ -18,7 +18,7 @@ export default meta
 type Story = StoryObj<typeof Container>
 
 const Content = () => (
-  <div className="h-16 w-full rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-xs text-muted-foreground font-mono">
+  <div className="bg-primary/10 border-primary/20 text-muted-foreground flex h-16 w-full items-center justify-center rounded border font-mono text-xs">
     content
   </div>
 )
@@ -36,10 +36,10 @@ export const SizeScale: Story = {
   render: () => {
     const sizes = ['sm', 'md', 'lg', 'xl', 'full'] as const
     return (
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex w-full flex-col gap-4">
         {sizes.map((size) => (
           <div key={size} className="flex flex-col gap-1">
-            <span className="font-mono text-xs text-muted-foreground">size={size}</span>
+            <span className="text-muted-foreground font-mono text-xs">size={size}</span>
             <Container size={size}>
               <Content />
             </Container>

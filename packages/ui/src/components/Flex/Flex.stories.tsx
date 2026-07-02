@@ -37,7 +37,7 @@ export default meta
 type Story = StoryObj<typeof Flex>
 
 const Item = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex h-10 w-16 items-center justify-center rounded bg-primary text-primary-foreground text-xs font-medium">
+  <div className="bg-primary text-primary-foreground flex h-10 w-16 items-center justify-center rounded text-xs font-medium">
     {children}
   </div>
 )
@@ -81,7 +81,7 @@ export const Alignment: Story = {
     justify: 'start',
   },
   render: (args) => (
-    <Flex {...args} className="h-24 w-full rounded border border-border p-4">
+    <Flex {...args} className="border-border h-24 w-full rounded border p-4">
       <Item>Start</Item>
       <Item>Middle</Item>
       <Item>End</Item>
@@ -128,7 +128,7 @@ export const GapScale: Story = {
       <Flex direction="column" gap="lg">
         {gaps.map((gap) => (
           <Flex key={gap} direction="column" gap="xs">
-            <span className="font-mono text-xs text-muted-foreground">gap={gap}</span>
+            <span className="text-muted-foreground font-mono text-xs">gap={gap}</span>
             <Flex gap={gap}>
               <Item>A</Item>
               <Item>B</Item>
