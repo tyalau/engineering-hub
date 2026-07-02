@@ -61,7 +61,7 @@ export const Field = ({
           <Label htmlFor={generatedId} className={cn(disabled && 'cursor-not-allowed opacity-50')}>
             {label}
             {required && (
-              <span className="ml-0.5 text-error" aria-hidden>
+              <span className="text-error ml-0.5" aria-hidden>
                 *
               </span>
             )}

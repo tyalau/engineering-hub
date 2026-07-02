@@ -23,7 +23,7 @@ type Story = StoryObj<typeof InputGroup>
 
 export const StartIcon: Story = {
   render: (args) => (
-    <InputGroup {...args} start={<Search className="size-4 pointer-events-none" />}>
+    <InputGroup {...args} start={<Search className="pointer-events-none size-4" />}>
       <Input size={args.size} placeholder="Search..." />
     </InputGroup>
   ),
@@ -31,7 +31,7 @@ export const StartIcon: Story = {
 
 export const EndIcon: Story = {
   render: (args) => (
-    <InputGroup {...args} end={<Mail className="size-4 pointer-events-none" />}>
+    <InputGroup {...args} end={<Mail className="pointer-events-none size-4" />}>
       <Input size={args.size} type="email" placeholder="you@example.com" />
     </InputGroup>
   ),
@@ -41,8 +41,8 @@ export const BothIcons: Story = {
   render: (args) => (
     <InputGroup
       {...args}
-      start={<Search className="size-4 pointer-events-none" />}
-      end={<Mail className="size-4 pointer-events-none" />}
+      start={<Search className="pointer-events-none size-4" />}
+      end={<Mail className="pointer-events-none size-4" />}
     >
       <Input size={args.size} placeholder="Search email..." />
     </InputGroup>
@@ -53,13 +53,13 @@ export const Sizes: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
-      <InputGroup size="sm" start={<Search className="size-4 pointer-events-none" />}>
+      <InputGroup size="sm" start={<Search className="pointer-events-none size-4" />}>
         <Input size="sm" placeholder="sm input" />
       </InputGroup>
-      <InputGroup size="md" start={<Search className="size-4 pointer-events-none" />}>
+      <InputGroup size="md" start={<Search className="pointer-events-none size-4" />}>
         <Input size="md" placeholder="md input" />
       </InputGroup>
-      <InputGroup size="lg" start={<Search className="size-4 pointer-events-none" />}>
+      <InputGroup size="lg" start={<Search className="pointer-events-none size-4" />}>
         <Input size="lg" placeholder="lg input" />
       </InputGroup>
     </div>
@@ -99,10 +99,10 @@ export const TextAdornment: Story = {
   render: (args) => (
     <div className="flex flex-col gap-3">
       <InputGroup {...args} start="$" end=".00">
-        <Input size={args.size} type="number" placeholder="0" className="pl-8! pr-8!" />
+        <Input size={args.size} type="number" placeholder="0" className="pr-8! pl-8!" />
       </InputGroup>
       <InputGroup {...args} start="https://" end="/path">
-        <Input size={args.size} placeholder="example.com" className="pl-17! pr-13!" />
+        <Input size={args.size} placeholder="example.com" className="pr-13! pl-17!" />
       </InputGroup>
     </div>
   ),

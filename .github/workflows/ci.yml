@@ -43,6 +43,10 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
+      # Run Prettier
+      - name: Run Prettier
+        run: pnpm format:check
+
       # Run lint
       - name: Run linter
         run: pnpm turbo run lint

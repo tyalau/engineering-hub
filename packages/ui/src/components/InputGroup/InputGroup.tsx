@@ -2,7 +2,16 @@ import { cn } from '@tyalau/ui/lib/utils'
 import { FieldContext, useFieldContext } from '../../shared/FieldContext'
 import type { Size } from '../../shared/types'
 
-const offsets: Record<Size, { left: string; right: string; padStart: string; padEnd: string; text: string }> = {
+const offsets: Record<
+  Size,
+  {
+    left: string
+    right: string
+    padStart: string
+    padEnd: string
+    text: string
+  }
+> = {
   sm: {
     left: 'left-2.5',
     right: 'right-2.5',
@@ -49,11 +58,11 @@ export const InputGroup = ({ start, end, size, className, children, ...props }: 
       {...props}
     >
       {start !== null && start !== undefined && (
-        <span className={cn('absolute flex items-center text-muted-foreground', o.left, o.text)}>{start}</span>
+        <span className={cn('text-muted-foreground absolute flex items-center', o.left, o.text)}>{start}</span>
       )}
       {children}
       {end !== null && end !== undefined && (
-        <span className={cn('absolute flex items-center text-muted-foreground', o.right, o.text)}>{end}</span>
+        <span className={cn('text-muted-foreground absolute flex items-center', o.right, o.text)}>{end}</span>
       )}
     </div>
   )

@@ -142,7 +142,7 @@ export const FullMatrix: Story = {
       <div className="flex flex-col gap-6">
         {variants.map((variant) => (
           <div key={variant} className="flex flex-col gap-2">
-            <span className="font-mono text-xs text-muted-foreground">{variant}</span>
+            <span className="text-muted-foreground font-mono text-xs">{variant}</span>
             <div className="flex flex-wrap gap-3">
               {colors.map((color) => (
                 <Button key={color} variant={variant} color={color}>

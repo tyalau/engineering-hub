@@ -150,7 +150,7 @@ export const WithInputGroup: Story = {
   args: { label: 'Search' },
   render: (args) => (
     <Field {...args}>
-      <InputGroup start={<Search className="size-4 pointer-events-none" />}>
+      <InputGroup start={<Search className="pointer-events-none size-4" />}>
         <Input placeholder="Search..." />
       </InputGroup>
     </Field>

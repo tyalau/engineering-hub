@@ -55,7 +55,7 @@ export const Lists: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="text-sm text-muted-foreground font-mono mb-2">Unordered list</p>
+        <p className="text-muted-foreground mb-2 font-mono text-sm">Unordered list</p>
         <ul>
           <li>First item</li>
           <li>Second item</li>
@@ -63,7 +63,7 @@ export const Lists: Story = {
         </ul>
       </div>
       <div>
-        <p className="text-sm text-muted-foreground font-mono mb-2">Ordered list</p>
+        <p className="text-muted-foreground mb-2 font-mono text-sm">Ordered list</p>
         <ol>
           <li>First step</li>
           <li>Second step</li>

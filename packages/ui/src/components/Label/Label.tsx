@@ -6,7 +6,7 @@ export type LabelProps = React.ComponentProps<typeof LabelPrimitive.Root>
 export const Label = ({ className, ...props }: LabelProps) => (
   <LabelPrimitive.Root
     data-slot="label"
-    className={cn('text-sm font-medium leading-none text-foreground', className)}
+    className={cn('text-foreground text-sm leading-none font-medium', className)}
     {...props}
   />
 )
