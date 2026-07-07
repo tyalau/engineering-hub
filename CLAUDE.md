@@ -47,6 +47,14 @@ Never hallucinate component properties! Before using ANY property on a component
 5. Use `get-storybook-story-instructions` before creating/updating stories
 6. Verify work with `run-story-tests`
 
+### Story Args & Controls
+
+Keep the Controls panel honest — a control that doesn't drive what's on screen is misleading. When a story hardcodes prop values (e.g. a `render` that lays out multiple instances with fixed `size`/`color`, or a matrix/showcase story), the meta-level `args` no longer reflect the rendered output, so disable the controls those props map to:
+
+- **Disable the affected controls** when only some props are hardcoded — set `argTypes: { size: { control: false }, color: { control: false } }` for the props the story overrides.
+- **Disable all controls** for pure showcase/matrix stories that ignore `args` entirely — set `parameters: { controls: { disable: true } }`.
+- Only expose controls for props the top-level `args` actually feed into the rendered component.
+
 ## Code Quality
 
 ### General
