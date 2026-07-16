@@ -86,6 +86,8 @@ Define component props using these predefined values:
 
 - `xs` | `sm` | `md` | `lg` | `xl`
 
+**Reuse the shared type, don't re-declare it.** When you need these unions as a _type_ (story args, helper signatures, lookup maps), import `Size`/`Gap` from `src/shared/types.ts` or `ColorVariant` from `src/shared/colorVariants.ts` rather than re-writing the literal union (e.g. `'sm' | 'md' | 'lg'`). The CVA `variants.ts` files remain the definition site those types describe.
+
 ## Development Workflow
 
 ### Environment Setup
@@ -134,6 +136,11 @@ components/Button/
 - **Composition**: Use Radix-ui's `Slot` component for polymorphic `asChild` support
 - **Tailwind CSS**: Use utility classes; organize complex styles in `variants.ts`
 - **Data Attributes**: Add `data-slot` and `data-variant`/`data-size` for styling/testing
+- **No dead or redundant utility classes**: Every Tailwind class must have a visible effect on the element it is applied to. When adapting classes from shadcn/ui or another component, drop the ones that don't apply here. Flag these in code review:
+  - **Dead marker/context classes** — `group` with no `group-*` descendant; `peer` with no `peer-*` sibling.
+  - **Unused positioning context** — `relative` on an element with no absolutely-positioned (`absolute`/`inset-*`) descendant.
+  - **Redundant sizing** — `aspect-square` alongside `size-*` (or equal `w-*`/`h-*`); duplicate/overridden utilities from the same group (e.g. two `font-*` weights on the same element).
+  - **Classes for absent content** — `text-*`/`fill-current` color utilities on an element that renders no text or SVG using `currentColor`.
 
 Example:
 

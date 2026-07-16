@@ -1,4 +1,4 @@
-import { cn } from '@tyalau/ui/lib/utils'
+import { cn, isDefined } from '@tyalau/ui/lib/utils'
 import { FieldContext, useFieldContext } from '../../shared/FieldContext'
 import type { Size } from '../../shared/types'
 
@@ -49,21 +49,14 @@ export const InputGroup = ({ start, end, size, className, children, ...props }: 
     <div
       data-slot="input-group"
       data-size={resolvedSize}
-      className={cn(
-        'relative flex items-center',
-        start !== null && start !== undefined && o.padStart,
-        end !== null && end !== undefined && o.padEnd,
-        className
-      )}
+      className={cn('relative flex items-center', isDefined(start) && o.padStart, isDefined(end) && o.padEnd, className)}
       {...props}
     >
-      {start !== null && start !== undefined && (
+      {isDefined(start) && (
         <span className={cn('text-muted-foreground absolute flex items-center', o.left, o.text)}>{start}</span>
       )}
       {children}
-      {end !== null && end !== undefined && (
-        <span className={cn('text-muted-foreground absolute flex items-center', o.right, o.text)}>{end}</span>
-      )}
+      {isDefined(end) && <span className={cn('text-muted-foreground absolute flex items-center', o.right, o.text)}>{end}</span>}
     </div>
   )
 
