@@ -109,14 +109,14 @@ export const Inline: Story = {
     gap: 'sm',
   },
   render: (args) => (
-    <p>
+    <div>
       Text with
       <Flex {...args}>
         <Item>A</Item>
         <Item>B</Item>
       </Flex>
       inline inside.
-    </p>
+    </div>
   ),
 }
 
