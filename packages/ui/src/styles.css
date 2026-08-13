@@ -275,3 +275,12 @@
     cursor: pointer;
   }
 }
+
+/* Muted description on neutral toasts only; colored toasts keep their status text.
+   Unlayered to beat Sonner's injected CSS on specificity (no !important). */
+[data-sonner-toast][data-styled='true']:not([data-type='success']):not([data-type='info']):not([data-type='warning']):not(
+    [data-type='error']
+  )
+  [data-description] {
+  color: var(--muted-foreground);
+}
