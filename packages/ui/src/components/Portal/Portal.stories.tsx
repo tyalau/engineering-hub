@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
-import { Button } from '../Button/Button'
+import { Button } from '../Button'
 import { Portal } from './Portal'
 
 const meta: Meta<typeof Portal> = {
