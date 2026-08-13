@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Search, Eye, EyeOff, Mail, Copy, Check } from 'lucide-react'
-import { Input } from '../Input/Input'
+import { Input } from '../Input'
 import { InputGroup } from './InputGroup'
 
 const meta: Meta<typeof InputGroup> = {

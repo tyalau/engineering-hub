@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Search } from 'lucide-react'
 import { expect } from 'storybook/test'
-import { Input } from '../Input/Input'
-import { InputGroup } from '../InputGroup/InputGroup'
+import { Input } from '../Input'
+import { InputGroup } from '../InputGroup'
 import { Field } from './Field'
 
 const meta: Meta<typeof Field> = {
