@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@tyalau/ui/lib/utils'
 import { useFieldContext } from '../../shared/FieldContext'
 import { inputVariants, type InputVariantProps } from './variants'

@@ -1,3 +1,5 @@
+'use client'
+
 import { useId, useMemo } from 'react'
 import { cn } from '@tyalau/ui/lib/utils'
 import { FieldContext, type FieldContextValue } from '../../shared/FieldContext'

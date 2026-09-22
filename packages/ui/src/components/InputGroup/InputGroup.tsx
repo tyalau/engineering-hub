@@ -1,3 +1,5 @@
+'use client'
+
 import { cn, isDefined } from '@tyalau/ui/lib/utils'
 import { FieldContext, useFieldContext } from '../../shared/FieldContext'
 import type { Size } from '../../shared/types'
