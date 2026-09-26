@@ -1,8 +1,17 @@
 {
   "name": "@tyalau/typescript-config",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyalau/engineering-hub.git",
+    "directory": "packages/typescript-config"
+  },
+  "homepage": "https://github.com/tyalau/engineering-hub/tree/main/packages/typescript-config#readme",
   "files": [
     "base.json",
     "nextjs.json",
