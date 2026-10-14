@@ -22,7 +22,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-turbo": "^2.9.12",
     "globals": "^17.6.0",
-    "typescript-eslint": "^8.50.0"
+    "typescript-eslint": "^8.71.1"
   },
   "peerDependencies": {
     "eslint": "^9.39.1",
