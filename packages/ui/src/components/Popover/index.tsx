@@ -6,4 +6,11 @@ export {
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
+  type PopoverProps,
+  type PopoverAnchorProps,
+  type PopoverContentProps,
+  type PopoverDescriptionProps,
+  type PopoverHeaderProps,
+  type PopoverTitleProps,
+  type PopoverTriggerProps,
 } from './Popover'
