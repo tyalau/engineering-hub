@@ -1,88 +1,90 @@
 # @tyalau/typescript-config
 
-**The source of truth for TypeScript configurations across the `@tyalau` ecosystem.** This package provides standardized, pre-configured "flavors" for Next.js, Vite, and React libraries, ensuring consistent strictness and high-performance type checking.
+Shareable `tsconfig.json` presets for bundler-based TypeScript projects: Next.js apps, React libraries, and plain TypeScript.
 
 ## ✨ Features
 
-- **Modern Resolution**: Built on `"moduleResolution": "bundler"` for seamless compatibility with Vite, Turbopack, and modern ESM.
-- **Speed First**: Defaulted to `noEmit`—leaving transpilation to high-speed tools like SWC or esbuild while TypeScript focuses purely on safety.
-- **Total Strictness**: Includes `strict: true` and several supplementary flags to prevent common runtime errors.
-
----
+- **Bundler resolution**: `"moduleResolution": "bundler"` with `"module": "esnext"`, for projects built by Vite, Next.js, esbuild or similar tools
+- **Type-check only by default**: `noEmit` is on, so your bundler handles transpiling. The `react-library` preset turns emit back on to generate `.d.ts` files.
+- **Strict**: `strict: true`, plus `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch` and `noUncheckedSideEffectImports`
 
 ## 🚀 Getting Started
 
-### 1. Installation
-
-Ensure the package is added as a development dependency within your workspace:
+### 1. Install
 
 ```bash
-pnpm add -D @tyalau/typescript-config --workspace
+pnpm add -D @tyalau/typescript-config typescript
 ```
 
-### 2. Implementation
+Requires TypeScript 5.6 or later, the first version with `noUncheckedSideEffectImports`.
 
-Extend the flavor that matches your project type in your `tsconfig.json`:
+### 2. Extend a preset
 
-#### **Next.js Applications**
+In your `tsconfig.json`, extend the preset that matches your project.
 
-Optimized for SWC, App Router, and type-safe metadata.
+#### Next.js apps
 
 ```json
 {
   "extends": "@tyalau/typescript-config/nextjs",
+  "compilerOptions": {
+    "paths": { "@/*": ["./src/*"] }
+  },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
 ```
 
-#### **React Libraries (Internal UI/Hooks)**
+#### React libraries
 
-Enables `.d.ts` declaration emitting so consumers get full IntelliSense.
+Emits JavaScript with `.d.ts` declarations and declaration maps, so consumers get full type information:
 
 ```json
 {
   "extends": "@tyalau/typescript-config/react-library",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
 ```
 
-#### **Vite Apps / Base Projects**
+#### Plain TypeScript
 
-A minimalist browser-focused configuration.
+`base` only includes the `esnext` library, with no DOM types. Browser projects should add the DOM libraries:
 
 ```json
 {
   "extends": "@tyalau/typescript-config/base",
   "compilerOptions": {
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "lib": ["esnext", "dom", "dom.iterable"]
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src"]
 }
 ```
 
----
+### 3. Add a script
 
-## 🏗️ Inheritance Model
-
-We use a layered architecture to keep configs DRY (_Don't Repeat Yourself_):
-
-| Config               | Purpose                                               | Inherits |
-| :------------------- | :---------------------------------------------------- | :------- |
-| `base.json`          | Core strictness, `esnext` target, and `noEmit` logic. | —        |
-| `nextjs.json`        | Sets `jsx: preserve` and integrates Next.js plugins.  | `base`   |
-| `react-library.json` | Enables `declaration: true` and `jsx: react-jsx`.     | `base`   |
-
----
-
-## ⌨️ Validation
-
-To run type-checking across the entire monorepo, execute the following from the **root**:
-
-```bash
-pnpm check-types
+```json
+{
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  }
+}
 ```
 
-> [!NOTE]
-> This leverages `turbo` to run `tsc --noEmit` in parallel across all packages, using the cached results where possible.
+## 🏗️ Presets
+
+| Entry point                               | Adds on top of `base`                                                      |
+| :---------------------------------------- | :------------------------------------------------------------------------- |
+| `@tyalau/typescript-config/base`          | — (`target: esnext`, bundler resolution, strict flags, `noEmit`)           |
+| `@tyalau/typescript-config/nextjs`        | `jsx: preserve`, DOM libs, `incremental`, the `next` TypeScript plugin     |
+| `@tyalau/typescript-config/react-library` | `jsx: react-jsx`, DOM libs, emits JS with `declaration` + `declarationMap` |
+
+`base` also turns on `allowImportingTsExtensions`, `isolatedModules`, `esModuleInterop`, `resolveJsonModule` and `skipLibCheck`. `react-library` turns `allowImportingTsExtensions` off, because TypeScript only allows it when `noEmit` is on.
+
+## 📄 License
+
+[MIT](https://github.com/tyalau/engineering-hub/blob/main/LICENSE)

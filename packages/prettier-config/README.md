@@ -1,47 +1,84 @@
 # @tyalau/prettier-config
 
-The single source of truth for code formatting across the `@tyalau` engineering hub. This package ensures visual consistency and eliminates "style-only" noise in Pull Requests.
+Shareable [Prettier](https://prettier.io/) config with automatic import sorting.
 
-## ✨ Features
+## ✨ Options
 
-- **Opinionated Defaults**: Optimized for readability and modern standards.
-- **Automatic Import Sorting**: Powered by `@trivago/prettier-plugin-sort-imports`.
-- **Zero-Friction Integration**: Designed for seamless use within the `pnpm` workspace.
+| Option          | Value                                                                                              |
+| :-------------- | :------------------------------------------------------------------------------------------------- |
+| `printWidth`    | `130`                                                                                              |
+| `semi`          | `false`                                                                                            |
+| `singleQuote`   | `true`                                                                                             |
+| `trailingComma` | `'es5'`                                                                                            |
+| Import sorting  | [`@trivago/prettier-plugin-sort-imports`](https://github.com/trivago/prettier-plugin-sort-imports) |
 
-## 🚀 Configuration
+### Import order
 
-### 1. Link Config
+Imports are grouped in this order, sorted case-insensitively within each group:
 
-The package is already installed in the monorepo root. To activate it, create a `.prettierrc` file in your root directory:
+1. `react`
+2. Third-party modules
+3. `@/` path aliases, in this order: `constants`, `types`, `utils`, `lib`, `hooks`, `services`, `components`, `containers`, `assets`, then any other `@/` path
+4. Parent-directory imports (`../`)
+5. Same-directory imports (`./`)
 
-```json
-"@tyalau/prettier-config"
+## 🚀 Getting Started
+
+### 1. Install
+
+```bash
+pnpm add -D @tyalau/prettier-config prettier
 ```
 
-### 2. Add Ignore Rules
+`prettier` (`^3.8.2`) is a peer dependency. The import-sorting plugin ships with this package.
 
-Create a `.prettierignore` file in the root to prevent formatting build artifacts and system files:
+### 2. Configure
+
+Reference the config from your `package.json`:
+
+```json
+{
+  "prettier": "@tyalau/prettier-config"
+}
+```
+
+To add other plugins or override options, create a `prettier.config.js` instead:
+
+```js
+// prettier.config.js
+import config from '@tyalau/prettier-config'
+
+export default {
+  ...config,
+  printWidth: 100,
+}
+```
+
+When you add plugins, include `...config.plugins` in the new `plugins` array, or import sorting stops working.
+
+### 3. Ignore build output
+
+Create a `.prettierignore` so Prettier skips generated files:
 
 ```text
-node_modules
 dist
 .next
 .turbo
 out
 pnpm-lock.yaml
-.prettiercache
 ```
 
----
-
-## ⌨️ Scripts
-
-Add this to your **root** `package.json` to manage formatting globally. The `--cache` flag ensures only changed files are processed, keeping the workflow fast.
+### 4. Add scripts
 
 ```json
 {
   "scripts": {
-    "format": "prettier --write \"**/*.{js,jsx,mjs,ts,tsx,css,scss,md,json}\""
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   }
 }
 ```
+
+## 📄 License
+
+[MIT](https://github.com/tyalau/engineering-hub/blob/main/LICENSE)
