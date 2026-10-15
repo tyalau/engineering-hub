@@ -10,9 +10,13 @@
     "format": "prettier --write \"**/*.{js,jsx,mjs,ts,tsx,css,scss,md,json,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,mjs,ts,tsx,css,scss,md,json,yaml,yml}\"",
     "check-types": "turbo run check-types",
-    "prepare": "husky"
+    "prepare": "husky",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=./packages/* && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@commitlint/cli": "^21.0.1",
     "@tyalau/commitlint-config": "workspace:*",
     "@tyalau/prettier-config": "workspace:*",
