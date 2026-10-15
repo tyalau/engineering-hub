@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      # TEMPORARY: remove before merging to main (only here to test the release flow)
-      - chore/publish-packages
   workflow_dispatch:
 
 # Never run two releases at once — a second publish would race the first
