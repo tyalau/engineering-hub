@@ -12,6 +12,10 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - 'dependencies'
+    groups:
+      npm-patch:
+        update-types:
+          - 'patch'
   - package-ecosystem: 'github-actions'
     directory: '/' # Location of workflow files
     schedule:
