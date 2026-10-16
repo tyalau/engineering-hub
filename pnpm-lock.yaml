@@ -410,7 +410,7 @@ importers:
         specifier: ^10.6.2
         version: 10.6.2(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.2)
       playwright:
-        specifier: ^1.62.1
+        specifier: ^1.64.0
         version: 1.64.1
       react:
         specifier: ^19.2.0
