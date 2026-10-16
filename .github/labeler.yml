@@ -1,3 +1,6 @@
+changeset-release:
+  - head-branch: '^changeset-release/'
+
 dependencies:
   - changed-files:
       - any-glob-to-any-file:

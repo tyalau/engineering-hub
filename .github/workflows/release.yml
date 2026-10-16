@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Never run two releases at once — a second publish would race the first
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  HUSKY: 0
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      # Push the "Version Packages" branch, tags, and GitHub releases
+      contents: write
+      # Open / update the "Version Packages" PR
+      pull-requests: write
+      # npm provenance attestation
+      id-token: write
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Set up pnpm
+      - name: Setup Node.js and pnpm
+        uses: pnpm/action-setup@v6
+
+      # Set up Node.js with the npm registry so NODE_AUTH_TOKEN is written to .npmrc
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      # Open the "Version Packages" PR while changesets are pending;
+      # once that PR is merged (no changesets left), build and publish
+      - name: Create release PR or publish
+        uses: changesets/action@v2
+        with:
+          version-script: pnpm version-packages
+          publish-script: pnpm release
+          commit-message: 'chore(release): version packages'
+          pr-title: 'chore(release): version packages'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true

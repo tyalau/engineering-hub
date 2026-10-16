@@ -1,0 +1,56 @@
+name: Validate Changesets
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  validate-changeset:
+    name: Validate Format
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Validate Changeset Files
+        run: |
+          # Find all changeset files, excluding README.md
+          changeset_files=$(find .changeset -type f -name "*.md" ! -name "README.md")
+
+          if [ -z "$changeset_files" ]; then
+            echo "No changeset files found. Skipping validation."
+            exit 0 # Pass if no changesets exist
+          fi
+
+          echo "Validating changeset files..."
+          ERROR_FOUND=0
+
+          for file in $changeset_files; do
+            echo "Validating file: $file"
+
+            # Extract the first non-empty line after the YAML front matter
+            first_content_line=$(awk 'BEGIN {skip=0} /^---$/ {if (skip==0) {skip=1; next} else {skip=2; next}} skip==2 && NF{print; exit}' "$file")
+
+            # Empty changesets (`changeset add --empty`) have no body and no changelog entry
+            if [ -z "$first_content_line" ]; then
+              echo "Skipping empty changeset: $file"
+              continue
+            fi
+
+            # Ensure the first line starts with an alphabetic character (A–Z or a–z)
+            if ! [[ "$first_content_line" =~ ^[A-Za-z] ]]; then
+              echo "Changeset file '$file' must start with an alphabetic character."
+              ERROR_FOUND=1
+            fi
+          done
+
+          if [ "$ERROR_FOUND" -eq 1 ]; then
+            echo "One or more changeset files are incorrectly formatted. Failing the validation."
+            exit 1
+          fi
+
+          echo "All changeset files are correctly formatted."

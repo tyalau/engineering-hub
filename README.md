@@ -1,159 +1,82 @@
-# Turborepo starter
+# Engineering Hub
 
-This Turborepo starter is maintained by the Turborepo core team.
+A monorepo for my shared front-end tooling: a React component library and shared ESLint, Prettier and TypeScript configs, plus two Next.js apps that consume them. Built with pnpm workspaces and [Turborepo](https://turborepo.dev/).
 
-## Using this example
+## Packages
 
-Run the following command:
+| Package                                                   | Description                                                         |
+| :-------------------------------------------------------- | :------------------------------------------------------------------ |
+| [`@tyalau/ui`](packages/ui)                               | React component library built on Radix UI and Tailwind CSS v4       |
+| [`@tyalau/eslint-config`](packages/eslint-config)         | ESLint flat configs for TypeScript, React and Next.js               |
+| [`@tyalau/prettier-config`](packages/prettier-config)     | Prettier config with import sorting                                 |
+| [`@tyalau/typescript-config`](packages/typescript-config) | `tsconfig.json` presets for Next.js, React libraries and TypeScript |
+| [`@tyalau/commitlint-config`](packages/commitlint-config) | Commitlint config for this repo (private, not published)            |
 
-```sh
-npx create-turbo@latest
-```
+## Apps
 
-## What's inside?
+| App                 | Port | Description                            |
+| :------------------ | :--- | :------------------------------------- |
+| [`web`](apps/web)   | 3000 | Next.js app that consumes `@tyalau/ui` |
+| [`docs`](apps/docs) | 3001 | Next.js app that consumes `@tyalau/ui` |
 
-This Turborepo includes the following packages/apps:
+## Getting started
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@tyalau/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@tyalau/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@tyalau/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+Requires Node.js `>=24.14.1` and pnpm `>=10.6.3` (see `engines` in `package.json`).
 
 ```sh
-cd my-turborepo
-turbo build
+pnpm install
+pnpm dev
 ```
 
-Without global `turbo`, use your package manager:
+`pnpm dev` starts both apps and rebuilds `@tyalau/ui` as you edit it. To work on components in isolation, run Storybook on port 6006:
 
 ```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+pnpm --filter @tyalau/ui storybook
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Commands
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Run these from the repo root:
+
+| Command            | Purpose                                                                         |
+| :----------------- | :------------------------------------------------------------------------------ |
+| `pnpm dev`         | Start the dev servers (web on 3000, docs on 3001)                               |
+| `pnpm build`       | Build all packages and apps                                                     |
+| `pnpm lint`        | Lint everything, with zero warnings allowed                                     |
+| `pnpm check-types` | Type-check the whole monorepo                                                   |
+| `pnpm test`        | Run the tests (component stories run in Chromium through Vitest and Playwright) |
+| `pnpm format`      | Format all files with Prettier                                                  |
+
+Add `--filter` to target one package or app, for example `pnpm build --filter=@tyalau/ui`.
+
+## Conventions
+
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org/), checked by commitlint in a Git hook. A pre-commit hook formats staged files with Prettier.
+- CI runs the Prettier check, lint, type check, build and tests on every pull request.
+
+## Releasing
+
+The published packages (`@tyalau/ui`, `@tyalau/eslint-config`, `@tyalau/prettier-config` and `@tyalau/typescript-config`) are versioned and released to npm with [Changesets](https://github.com/changesets/changesets). The apps and `@tyalau/commitlint-config` are private and never released.
+
+### Adding a changeset
+
+Changesets are added by hand, only when a change should be released. A PR without one releases nothing.
 
 ```sh
-turbo build --filter=docs
+pnpm changeset
 ```
 
-Without global `turbo`:
+Select the packages, choose the bump (`major`, `minor` or `patch`), and write a one-line summary for the changelog. Commit the generated `.changeset/*.md` file together with the PR.
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+### Publishing to npm
 
-### Develop
+1. Merge PRs to `main`. The [Release workflow](.github/workflows/release.yml) keeps a single `chore: version packages` PR up to date with every pending changeset, including the bumped versions and changelog entries.
+2. When you want to release, review and merge that PR.
+3. The merge runs the same workflow again, which builds the packages, publishes the new versions to npm and pushes the git tags.
 
-To develop all apps and packages, run the following command:
+> [!NOTE]
+> Temporary, while testing: the repo is in Changesets pre mode, so versions are published as `x.y.z-beta.n` under the `beta` tag. Only `@tyalau/eslint-config` is released for now; the other published packages are listed under `ignore` in `.changeset/config.json`. When testing is done, run `pnpm changeset pre exit`, empty `ignore`, and delete this note.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## License
 
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+[MIT](LICENSE)

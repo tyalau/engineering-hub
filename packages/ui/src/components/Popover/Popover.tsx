@@ -1,20 +1,17 @@
 import { Popover as PopoverPrimitive } from 'radix-ui'
 import { cn } from '@tyalau/ui/lib/utils'
 
-const Popover = (props: React.ComponentProps<typeof PopoverPrimitive.Root>) => (
-  <PopoverPrimitive.Root data-slot="popover" {...props} />
-)
+export type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root>
 
-const PopoverTrigger = (props: React.ComponentProps<typeof PopoverPrimitive.Trigger>) => (
-  <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
-)
+const Popover = (props: PopoverProps) => <PopoverPrimitive.Root data-slot="popover" {...props} />
 
-const PopoverContent = ({
-  className,
-  align = 'center',
-  sideOffset = 4,
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) => (
+export type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
+
+const PopoverTrigger = (props: PopoverTriggerProps) => <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+
+export type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
+
+const PopoverContent = ({ className, align = 'center', sideOffset = 4, ...props }: PopoverContentProps) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       data-slot="popover-content"
@@ -29,19 +26,25 @@ const PopoverContent = ({
   </PopoverPrimitive.Portal>
 )
 
-const PopoverAnchor = (props: React.ComponentProps<typeof PopoverPrimitive.Anchor>) => (
-  <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
-)
+export type PopoverAnchorProps = React.ComponentProps<typeof PopoverPrimitive.Anchor>
 
-const PopoverHeader = ({ className, ...props }: React.ComponentProps<'div'>) => (
+const PopoverAnchor = (props: PopoverAnchorProps) => <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
+
+export type PopoverHeaderProps = React.ComponentProps<'div'>
+
+const PopoverHeader = ({ className, ...props }: PopoverHeaderProps) => (
   <div data-slot="popover-header" className={cn('flex flex-col gap-0.5 text-sm', className)} {...props} />
 )
 
-const PopoverTitle = ({ className, ...props }: React.ComponentProps<'div'>) => (
+export type PopoverTitleProps = React.ComponentProps<'div'>
+
+const PopoverTitle = ({ className, ...props }: PopoverTitleProps) => (
   <div data-slot="popover-title" className={cn('font-medium', className)} {...props} />
 )
 
-const PopoverDescription = ({ className, ...props }: React.ComponentProps<'p'>) => (
+export type PopoverDescriptionProps = React.ComponentProps<'p'>
+
+const PopoverDescription = ({ className, ...props }: PopoverDescriptionProps) => (
   <p data-slot="popover-description" className={cn('text-muted-foreground', className)} {...props} />
 )
 

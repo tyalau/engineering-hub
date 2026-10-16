@@ -8,6 +8,10 @@ import baseConfig from './base.js'
 export default [
   ...baseConfig,
 
+  // ESLint only lints .js/.mjs/.cjs by default, and typescript-eslint adds .ts/.tsx.
+  // Without this, .jsx files are silently skipped.
+  { files: ['**/*.jsx'] },
+
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat['jsx-runtime'],
   pluginJsxA11y.flatConfigs.recommended,
