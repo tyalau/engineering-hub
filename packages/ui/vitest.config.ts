@@ -17,6 +17,21 @@ export default defineConfig({
           // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({ configDir: path.join(dirname, '.storybook') }),
         ],
+        // Pre-bundle deps up front. Otherwise Vite discovers them lazily mid-run, reloads
+        // the browser, and story files being imported at that moment fail intermittently
+        // with "Vitest failed to find the current suite".
+        optimizeDeps: {
+          include: [
+            '@storybook/addon-themes',
+            'class-variance-authority',
+            'clsx',
+            'lucide-react',
+            'radix-ui',
+            'react/jsx-dev-runtime',
+            'sonner',
+            'tailwind-merge',
+          ],
+        },
         test: {
           name: 'storybook',
           browser: {
