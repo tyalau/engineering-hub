@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 export type ClientOnlyProps = {
   children: React.ReactNode
@@ -13,12 +13,12 @@ export type ClientOnlyProps = {
  * preventing SSR hydration mismatches for client-only content (e.g. portals, values that
  * read from `window`). Renders `fallback` on the server and until the first effect runs.
  */
-export const ClientOnly = ({ children, fallback = null }: ClientOnlyProps) => {
-  const [mounted, setMounted] = useState(false)
+const subscribe = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+export const ClientOnly = ({ children, fallback = null }: ClientOnlyProps) => {
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot)
 
   return mounted ? children : fallback
 }
