@@ -8,13 +8,78 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - '**'
+  workflow_dispatch:
 
 env:
   HUSKY: 0
 
 jobs:
-  integration:
-    name: Integration
+  format:
+    name: Prettier
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run Prettier
+        run: pnpm format:check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run linter
+        run: pnpm turbo run lint
+
+  check-types:
+    name: Check types
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run check types
+        run: pnpm turbo run check-types
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run build
+        run: pnpm turbo run build
+
+  test:
+    name: Test
     runs-on: ubuntu-latest
     container:
       # Make sure to grab the latest version of the Playwright image
@@ -24,42 +89,12 @@ jobs:
       contents: read
 
     steps:
-      # Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      # Set up pnpm
-      - name: Setup Node.js and pnpm
-        uses: pnpm/action-setup@v6
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      # Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: 'pnpm'
-
-      # Install dependencies
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile
-
-      # Run Prettier
-      - name: Run Prettier
-        run: pnpm format:check
-
-      # Run lint
-      - name: Run linter
-        run: pnpm turbo run lint
-
-      # Run type check
-      - name: Run check types
-        run: pnpm turbo run check-types
-
-      # Run build
-      - name: Run build
-        run: pnpm turbo run build
-
-      # Run tests
       - name: Run tests
         env:
           PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
