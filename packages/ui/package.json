@@ -54,7 +54,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@tyalau/eslint-config": "workspace:*",
     "@tyalau/typescript-config": "workspace:*",
-    "@types/node": "^24.1.0",
+    "@types/node": "^26.6.5",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.3",
     "@vitest/browser-playwright": "^5.0.4",
