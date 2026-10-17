@@ -5,22 +5,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/" # Location of package manifests
     schedule:
-      interval: 'quarterly'
+      interval: "quarterly"
     open-pull-requests-limit: 5
     labels:
-      - 'dependencies'
+      - "dependencies"
     groups:
       npm-patch:
         update-types:
-          - 'patch'
-  - package-ecosystem: 'github-actions'
-    directory: '/' # Location of workflow files
+          - "patch"
+  - package-ecosystem: "github-actions"
+    directory: "/" # Location of workflow files
     schedule:
-      interval: 'quarterly'
+      interval: "quarterly"
     open-pull-requests-limit: 5
     labels:
-      - 'dependencies'
-      - 'scope:workflows'
+      - "dependencies"
+      - "scope:workflows"

@@ -1,52 +1,52 @@
 changeset-release:
-  - head-branch: '^changeset-release/'
+  - head-branch: "^changeset-release/"
 
 dependencies:
   - changed-files:
       - any-glob-to-any-file:
-          - '**/package.json'
-          - 'pnpm-lock.yaml'
+          - "**/package.json"
+          - "pnpm-lock.yaml"
 
-'scope:configs':
+"scope:configs":
   - changed-files:
-      - any-glob-to-any-file: 'packages/*-config/**'
+      - any-glob-to-any-file: "packages/*-config/**"
 
-'scope:starter':
+"scope:starter":
   - changed-files:
-      - any-glob-to-any-file: 'apps/**'
+      - any-glob-to-any-file: "apps/**"
 
-'scope:ui':
+"scope:ui":
   - changed-files:
-      - any-glob-to-any-file: 'packages/ui/**'
+      - any-glob-to-any-file: "packages/ui/**"
 
-'scope:workflows':
-  - head-branch: '^ci/'
+"scope:workflows":
+  - head-branch: "^ci/"
   - changed-files:
-      - any-glob-to-any-file: '.github/**'
+      - any-glob-to-any-file: ".github/**"
 
-'type:bug':
-  - head-branch: '^fix/'
+"type:bug":
+  - head-branch: "^fix/"
 
-'type:docs':
-  - head-branch: '^docs/'
+"type:docs":
+  - head-branch: "^docs/"
   - changed-files:
-      - any-glob-to-any-file: '**/*.md'
+      - any-glob-to-any-file: "**/*.md"
 
-'type:engineering':
-  - head-branch: '^chore/'
-  - changed-files:
-      - any-glob-to-any-file:
-          - 'pnpm-workspace.yaml'
-          - 'turbo.json'
-
-'type:feature':
-  - head-branch: '^feat/'
-
-'type:refactor':
-  - head-branch: '^refactor/'
-
-'type:dx':
+"type:engineering":
+  - head-branch: "^chore/"
   - changed-files:
       - any-glob-to-any-file:
-          - 'CLAUDE.md'
-          - '.storybook/**'
+          - "pnpm-workspace.yaml"
+          - "turbo.json"
+
+"type:feature":
+  - head-branch: "^feat/"
+
+"type:refactor":
+  - head-branch: "^refactor/"
+
+"type:dx":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "CLAUDE.md"
+          - ".storybook/**"

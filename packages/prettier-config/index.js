@@ -23,4 +23,10 @@ export default {
     '^[./]',
   ],
   importOrderCaseInsensitive: true,
+  overrides: [
+    {
+      files: ['*.yml', '*.yaml'],
+      options: { singleQuote: false },
+    },
+  ],
 }
