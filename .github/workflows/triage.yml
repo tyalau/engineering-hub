@@ -1,19 +1,21 @@
 name: "Pull Request Triage"
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
 
 jobs:
-  triage:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: tyalau/.github/.github/workflows/labeler.yml@main
+    with:
+      configuration-path: .github/labeler.yml
+
+  assign:
     permissions:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - name: Apply labels
-        uses: actions/labeler@v7
-        with:
-          sync-labels: true
-
       - name: Auto-assign PR to creator
         uses: toshimaru/auto-author-assign@v3.1.0
